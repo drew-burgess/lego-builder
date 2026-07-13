@@ -1,0 +1,362 @@
+{
+  "format": "three-brick-designer",
+  "version": 3,
+  "exportedAt": "2026-07-13T00:00:00.000Z",
+  "units": {
+    "gridX": 1,
+    "gridZ": 1,
+    "brickHeight": 1.2
+  },
+  "settings": {
+    "requireSupport": false,
+    "sideAttachment": false
+  },
+  "bricks": [
+    {
+      "id": "b451680b-1c3c-4bbb-9bca-4fbe41850001",
+      "x": 0.0,
+      "z": -7.5,
+      "layer": 0,
+      "studsX": 7,
+      "studsZ": 16,
+      "rotation": 0,
+      "color": "#475569",
+      "pieceType": "plate"
+    },
+    {
+      "id": "908f1465-9576-4f04-96f3-d01150a388dc",
+      "x": 0.0,
+      "z": 7.0,
+      "layer": 0,
+      "studsX": 7,
+      "studsZ": 13,
+      "rotation": 0,
+      "color": "#475569",
+      "pieceType": "plate"
+    },
+    {
+      "id": "373c220a-c9e4-450d-93ec-18c8aa25e626",
+      "x": -8.5,
+      "z": -1.0,
+      "layer": 0,
+      "studsX": 8,
+      "studsZ": 11,
+      "rotation": 0,
+      "color": "#6b7280",
+      "pieceType": "plate"
+    },
+    {
+      "id": "5ad29721-e92f-4a59-8432-87b600b67ace",
+      "x": 8.5,
+      "z": -1.0,
+      "layer": 0,
+      "studsX": 8,
+      "studsZ": 11,
+      "rotation": 0,
+      "color": "#6b7280",
+      "pieceType": "plate"
+    },
+    {
+      "id": "e2bd3c3f-044d-4d1e-b5d7-31a5417cde8e",
+      "x": 0.0,
+      "z": -12.5,
+      "layer": 1,
+      "studsX": 11,
+      "studsZ": 6,
+      "rotation": 0,
+      "color": "#6b7280",
+      "pieceType": "brick"
+    },
+    {
+      "id": "3b41ca06-5919-4c4a-a8bc-c7c0f1d73792",
+      "x": 0.0,
+      "z": -1.5,
+      "layer": 1,
+      "studsX": 9,
+      "studsZ": 16,
+      "rotation": 0,
+      "color": "#cbd5e1",
+      "pieceType": "brick"
+    },
+    {
+      "id": "3af67d2f-dc4b-4901-a903-19b268565c35",
+      "x": 0.0,
+      "z": 7.5,
+      "layer": 1,
+      "studsX": 9,
+      "studsZ": 2,
+      "rotation": 0,
+      "color": "#cbd5e1",
+      "pieceType": "brick"
+    },
+    {
+      "id": "575c6b6d-8832-4df2-86e5-88eebf791733",
+      "x": 0.0,
+      "z": 11.0,
+      "layer": 1,
+      "studsX": 5,
+      "studsZ": 5,
+      "rotation": 0,
+      "color": "#f8fafc",
+      "pieceType": "slope"
+    },
+    {
+      "id": "93989e97-ea39-423d-8ad6-ae535648ac09",
+      "x": -8.5,
+      "z": -1.0,
+      "layer": 1,
+      "studsX": 8,
+      "studsZ": 7,
+      "rotation": 0,
+      "color": "#9ca3af",
+      "pieceType": "slope"
+    },
+    {
+      "id": "2a02b3f0-4800-41b3-b677-76efdb3b2da3",
+      "x": 8.5,
+      "z": -1.0,
+      "layer": 1,
+      "studsX": 8,
+      "studsZ": 7,
+      "rotation": 0,
+      "color": "#9ca3af",
+      "pieceType": "slope"
+    },
+    {
+      "id": "7a1f985f-74b9-4998-84ed-7dc5d7fe0f62",
+      "x": -13.0,
+      "z": -1.0,
+      "layer": 1,
+      "studsX": 1,
+      "studsZ": 5,
+      "rotation": 0,
+      "color": "#dc2626",
+      "pieceType": "tile"
+    },
+    {
+      "id": "41fb01bb-0389-45d1-a95c-e98dd5b93642",
+      "x": 13.0,
+      "z": -1.0,
+      "layer": 1,
+      "studsX": 1,
+      "studsZ": 5,
+      "rotation": 0,
+      "color": "#dc2626",
+      "pieceType": "tile"
+    },
+    {
+      "id": "426492c4-5cec-40b0-9c52-b931f10913fd",
+      "x": 0.0,
+      "z": -0.5,
+      "layer": 2,
+      "studsX": 7,
+      "studsZ": 16,
+      "rotation": 0,
+      "color": "#f8fafc",
+      "pieceType": "brick"
+    },
+    {
+      "id": "d7a7e72f-bfe0-4cac-b78e-76e603d04ec3",
+      "x": 0.0,
+      "z": 9.0,
+      "layer": 2,
+      "studsX": 7,
+      "studsZ": 3,
+      "rotation": 0,
+      "color": "#f8fafc",
+      "pieceType": "brick"
+    },
+    {
+      "id": "5483da52-2c1f-4d88-8213-59ffeec433e8",
+      "x": 0.0,
+      "z": 13.0,
+      "layer": 2,
+      "studsX": 3,
+      "studsZ": 5,
+      "rotation": 0,
+      "color": "#f8fafc",
+      "pieceType": "slope"
+    },
+    {
+      "id": "5d450b68-3757-4747-b020-af63bf11e3a0",
+      "x": 0.0,
+      "z": -13.5,
+      "layer": 2,
+      "studsX": 9,
+      "studsZ": 4,
+      "rotation": 0,
+      "color": "#9ca3af",
+      "pieceType": "brick"
+    },
+    {
+      "id": "4af23fc8-63eb-4406-bc7c-717dc8cda14d",
+      "x": 0.0,
+      "z": 15.5,
+      "layer": 3,
+      "studsX": 1,
+      "studsZ": 4,
+      "rotation": 0,
+      "color": "#f8fafc",
+      "pieceType": "slope"
+    },
+    {
+      "id": "72b29f9e-d8b1-4895-b712-84ef8240050b",
+      "x": 0.0,
+      "z": 8.0,
+      "layer": 3,
+      "studsX": 5,
+      "studsZ": 5,
+      "rotation": 0,
+      "color": "#38bdf8",
+      "pieceType": "window"
+    },
+    {
+      "id": "f36bfc89-bcbf-41ab-841b-d8a5e9c3096a",
+      "x": 0.0,
+      "z": -10.5,
+      "layer": 3,
+      "studsX": 3,
+      "studsZ": 8,
+      "rotation": 0,
+      "color": "#475569",
+      "pieceType": "slope"
+    },
+    {
+      "id": "45493903-36a6-4ce2-909f-8fb700d445a4",
+      "x": -3.0,
+      "z": -5.0,
+      "layer": 3,
+      "studsX": 1,
+      "studsZ": 5,
+      "rotation": 0,
+      "color": "#2563eb",
+      "pieceType": "tile"
+    },
+    {
+      "id": "4addd4dc-4962-4d91-a5fd-d23dbe078c42",
+      "x": 3.0,
+      "z": -5.0,
+      "layer": 3,
+      "studsX": 1,
+      "studsZ": 5,
+      "rotation": 0,
+      "color": "#2563eb",
+      "pieceType": "tile"
+    },
+    {
+      "id": "0b7bf4ca-eecd-48d4-9310-a05437d27019",
+      "x": 0.0,
+      "z": 8.0,
+      "layer": 4,
+      "studsX": 3,
+      "studsZ": 3,
+      "rotation": 0,
+      "color": "#67e8f9",
+      "pieceType": "slope"
+    },
+    {
+      "id": "a18656b9-f831-4ad9-a3d7-b9d77bd807c1",
+      "x": 0.0,
+      "z": -10.5,
+      "layer": 4,
+      "studsX": 3,
+      "studsZ": 4,
+      "rotation": 0,
+      "color": "#dc2626",
+      "pieceType": "tile"
+    },
+    {
+      "id": "64237781-26a0-4fa8-93df-265006f5c327",
+      "x": -3,
+      "z": -16,
+      "layer": 3,
+      "studsX": 1,
+      "studsZ": 1,
+      "rotation": 0,
+      "color": "#f97316",
+      "pieceType": "cylinder"
+    },
+    {
+      "id": "b27c4ef1-b0f6-4a80-875c-23f3eac9489a",
+      "x": -3,
+      "z": -17,
+      "layer": 4,
+      "studsX": 1,
+      "studsZ": 1,
+      "rotation": 0,
+      "color": "#facc15",
+      "pieceType": "cone"
+    },
+    {
+      "id": "21763805-711a-4243-8194-cbb00f3bc348",
+      "x": 0,
+      "z": -16,
+      "layer": 3,
+      "studsX": 1,
+      "studsZ": 1,
+      "rotation": 0,
+      "color": "#f97316",
+      "pieceType": "cylinder"
+    },
+    {
+      "id": "4a43b65d-19e6-408f-b66d-0d6137f74350",
+      "x": 0,
+      "z": -17,
+      "layer": 4,
+      "studsX": 1,
+      "studsZ": 1,
+      "rotation": 0,
+      "color": "#facc15",
+      "pieceType": "cone"
+    },
+    {
+      "id": "1fe9cb70-30fb-4471-9c7d-e0454407fc8f",
+      "x": 3,
+      "z": -16,
+      "layer": 3,
+      "studsX": 1,
+      "studsZ": 1,
+      "rotation": 0,
+      "color": "#f97316",
+      "pieceType": "cylinder"
+    },
+    {
+      "id": "f33f0f55-0237-48b4-a0bd-c930302c7f4a",
+      "x": 3,
+      "z": -17,
+      "layer": 4,
+      "studsX": 1,
+      "studsZ": 1,
+      "rotation": 0,
+      "color": "#facc15",
+      "pieceType": "cone"
+    },
+    {
+      "id": "41030eed-a312-4d25-96ca-ba399d7c36ab",
+      "x": 0,
+      "z": -2,
+      "layer": 3,
+      "studsX": 3,
+      "studsZ": 3,
+      "rotation": 0,
+      "color": "#9ca3af",
+      "pieceType": "dish"
+    },
+    {
+      "id": "aab228bb-e51d-435f-864e-f36a68131466",
+      "x": 0,
+      "z": -2,
+      "layer": 4,
+      "studsX": 1,
+      "studsZ": 1,
+      "rotation": 0,
+      "color": "#67e8f9",
+      "pieceType": "cylinder"
+    }
+  ],
+  "metadata": {
+    "name": "Astra Star Cruiser",
+    "description": "A long-range exploration cruiser with swept wings, cockpit, engine cluster and dorsal antenna.",
+    "author": "OpenAI ChatGPT"
+  }
+}

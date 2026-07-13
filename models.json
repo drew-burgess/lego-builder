@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "models": [
+    {
+      "id": "mars-colony",
+      "name": "Detailed Mars Colony",
+      "description": "A large futuristic Mars research station with habitats, reactor, hangar, portal, tower, solar equipment, rover and terrain details.",
+      "file": "./models/mars_colony.json",
+      "thumbnail": null,
+      "badge": "MARS",
+      "pieces": 1030,
+      "version": 3,
+      "tags": [
+        "space",
+        "station",
+        "mars"
+      ]
+    },
+    {
+      "id": "citadel-castle",
+      "name": "Citadel Castle",
+      "description": "A fortified stone castle with towers, gatehouse, courtyard and battlements.",
+      "file": "./models/citadel_castle.json",
+      "thumbnail": null,
+      "badge": "CASTLE",
+      "pieces": 212,
+      "version": 3,
+      "tags": [
+        "castle",
+        "medieval",
+        "architecture"
+      ]
+    },
+    {
+      "id": "astra-star-cruiser",
+      "name": "Astra Star Cruiser",
+      "description": "A long-range exploration cruiser with swept wings, cockpit and engine cluster.",
+      "file": "./models/astra_star_cruiser.json",
+      "thumbnail": null,
+      "badge": "SPACE",
+      "pieces": 31,
+      "version": 3,
+      "tags": [
+        "spaceship",
+        "space",
+        "vehicle"
+      ]
+    },
+    {
+      "id": "glass-ridge-house",
+      "name": "Glass Ridge House",
+      "description": "A modern two-story residence with pool, garage, terraces and glass walls.",
+      "file": "./models/glass_ridge_house.json",
+      "thumbnail": null,
+      "badge": "HOUSE",
+      "pieces": 80,
+      "version": 3,
+      "tags": [
+        "house",
+        "modern",
+        "architecture"
+      ]
+    },
+    {
+      "id": "velocity-gt-racer",
+      "name": "Velocity GT Racer",
+      "description": "A low-slung endurance race car with aerodynamic bodywork and oversized wheels.",
+      "file": "./models/velocity_gt_racer.json",
+      "thumbnail": null,
+      "badge": "RACER",
+      "pieces": 31,
+      "version": 3,
+      "tags": [
+        "car",
+        "vehicle",
+        "racing"
+      ]
+    }
+  ]
+}
