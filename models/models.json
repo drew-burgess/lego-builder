@@ -5,7 +5,7 @@
       "id": "mars-colony-detailed",
       "name": "Detailed Mars Colony",
       "description": "A large futuristic Mars research station with habitats, reactor, hangar, portal, tower, solar equipment, rover and terrain details.",
-      "file": "./models/mars-colony-detailed.json",
+      "file": "./models/mars_colony_detailed.json",
       "thumbnail": null,
       "badge": "MARS",
       "pieces": 1030,
