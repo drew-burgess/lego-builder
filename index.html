@@ -308,6 +308,87 @@
             border: 0 !important;
         }
 
+
+
+        /* Model library */
+        #library-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 40;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: rgba(3, 7, 18, 0.78);
+            backdrop-filter: blur(8px);
+        }
+        #library-overlay.open { display: flex; }
+        #library-dialog {
+            width: min(920px, 100%);
+            max-height: min(760px, calc(100vh - 48px));
+            overflow: auto;
+            padding: 18px;
+            border: 1px solid var(--panel-border);
+            border-radius: 14px;
+            background: rgba(10, 15, 25, 0.98);
+            box-shadow: 0 24px 70px rgba(0,0,0,.55);
+        }
+        .library-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 14px;
+        }
+        .library-header p {
+            margin-top: 5px;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.4;
+        }
+        #library-close { flex: 0 0 auto; }
+        #library-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 12px;
+        }
+        .model-card {
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,.11);
+            border-radius: 10px;
+            background: rgba(255,255,255,.045);
+        }
+        .model-thumb {
+            display: grid;
+            min-height: 130px;
+            place-items: center;
+            background: linear-gradient(145deg, #3f1d14, #7c2d12 55%, #0f172a);
+            color: rgba(255,255,255,.8);
+            font-size: 42px;
+            font-weight: 900;
+            letter-spacing: -.06em;
+        }
+        .model-thumb img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            display: block;
+        }
+        .model-card-body { padding: 12px; }
+        .model-card h3 { margin: 0 0 5px; font-size: 15px; }
+        .model-card p { min-height: 48px; color: var(--muted); font-size: 12px; line-height: 1.4; }
+        .model-card-meta { margin: 9px 0; color: #cbd5e1; font-size: 11px; }
+        .model-card button { width: 100%; }
+        .library-empty {
+            grid-column: 1 / -1;
+            padding: 28px;
+            border: 1px dashed rgba(255,255,255,.18);
+            border-radius: 10px;
+            color: var(--muted);
+            text-align: center;
+            line-height: 1.5;
+        }
+
         @media (max-width: 820px) {
             #help-panel { display: none; }
 
@@ -473,11 +554,27 @@
                 <button id="copy-button" type="button">Copy JSON</button>
                 <button id="download-button" type="button">Download JSON</button>
                 <button id="import-button" type="button" class="secondary">Import JSON</button>
+                <button id="library-button" type="button" class="secondary">Model Library</button>
                 <button id="frame-button" type="button" class="secondary">Frame model</button>
                 <button id="clear-button" type="button" class="danger" disabled>Clear model</button>
             </div>
         </section>
     </aside>
+
+
+
+    <div id="library-overlay" aria-hidden="true">
+        <section id="library-dialog" role="dialog" aria-modal="true" aria-labelledby="library-title">
+            <div class="library-header">
+                <div>
+                    <h1 id="library-title">Model Library</h1>
+                    <p>Models are loaded from <code>models/models.json</code>. Add future models by editing that manifest.</p>
+                </div>
+                <button id="library-close" type="button" class="secondary" aria-label="Close model library">Close</button>
+            </div>
+            <div id="library-grid" aria-live="polite"></div>
+        </section>
+    </div>
 
     <div id="placement-hint" aria-hidden="true">Build mode · click an upward-facing surface to place a brick.</div>
     <div id="status" role="status" aria-live="polite"></div>
@@ -540,6 +637,10 @@
             copyButton: document.getElementById("copy-button"),
             downloadButton: document.getElementById("download-button"),
             importButton: document.getElementById("import-button"),
+            libraryButton: document.getElementById("library-button"),
+            libraryOverlay: document.getElementById("library-overlay"),
+            libraryClose: document.getElementById("library-close"),
+            libraryGrid: document.getElementById("library-grid"),
             frameButton: document.getElementById("frame-button"),
             clearButton: document.getElementById("clear-button"),
             brickCount: document.getElementById("brick-count"),
@@ -1782,6 +1883,82 @@
             refreshGhostFromLastPointer();
         }
 
+        const MODEL_MANIFEST_URL = "./models/models.json";
+        let modelManifestCache = null;
+
+        function escapeHtml(value) {
+            return String(value ?? "")
+                .replaceAll("&", "&amp;")
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;")
+                .replaceAll('"', "&quot;")
+                .replaceAll("'", "&#039;");
+        }
+
+        function setLibraryOpen(open) {
+            dom.libraryOverlay.classList.toggle("open", open);
+            dom.libraryOverlay.setAttribute("aria-hidden", String(!open));
+            if (open) dom.libraryClose.focus({ preventScroll: true });
+        }
+
+        async function fetchModelManifest(force = false) {
+            if (modelManifestCache && !force) return modelManifestCache;
+            const response = await fetch(MODEL_MANIFEST_URL, { cache: "no-store" });
+            if (!response.ok) throw new Error(`Library manifest returned ${response.status}.`);
+            const payload = await response.json();
+            if (!payload || !Array.isArray(payload.models)) {
+                throw new Error("Library manifest is missing a models array.");
+            }
+            modelManifestCache = payload;
+            return payload;
+        }
+
+        function renderModelLibrary(models) {
+            if (!models.length) {
+                dom.libraryGrid.innerHTML = '<div class="library-empty">No models are listed yet.</div>';
+                return;
+            }
+            dom.libraryGrid.innerHTML = models.map(model => {
+                const thumb = model.thumbnail
+                    ? `<div class="model-thumb"><img src="${escapeHtml(model.thumbnail)}" alt=""></div>`
+                    : `<div class="model-thumb" aria-hidden="true">${escapeHtml(model.badge || "3D")}</div>`;
+                const meta = [model.pieces ? `${Number(model.pieces).toLocaleString()} pieces` : "", model.version ? `Format ${escapeHtml(model.version)}` : ""]
+                    .filter(Boolean).join(" · ");
+                return `<article class="model-card">
+                    ${thumb}
+                    <div class="model-card-body">
+                        <h3>${escapeHtml(model.name || model.id || "Untitled model")}</h3>
+                        <p>${escapeHtml(model.description || "")}</p>
+                        <div class="model-card-meta">${meta}</div>
+                        <button type="button" data-model-file="${escapeHtml(model.file)}" data-model-name="${escapeHtml(model.name || "Model")}">Load Model</button>
+                    </div>
+                </article>`;
+            }).join("");
+        }
+
+        async function openModelLibrary() {
+            setLibraryOpen(true);
+            dom.libraryGrid.innerHTML = '<div class="library-empty">Loading model library…</div>';
+            try {
+                const manifest = await fetchModelManifest();
+                renderModelLibrary(manifest.models);
+            } catch (error) {
+                console.error(error);
+                dom.libraryGrid.innerHTML = `<div class="library-empty">Unable to load the model library.<br>${escapeHtml(error.message)}<br><br>Confirm that <code>models/models.json</code> exists in the published repository.</div>`;
+            }
+        }
+
+        async function loadHostedModel(file, name) {
+            if (!file) throw new Error("The model entry does not include a file path.");
+            if (brickRecords.size > 0 && !window.confirm(`Replace the current ${brickRecords.size}-piece model with ${name}?`)) return;
+            showStatus(`Loading ${name}…`, "info", 0);
+            const response = await fetch(file, { cache: "no-store" });
+            if (!response.ok) throw new Error(`Model request returned ${response.status}.`);
+            const payload = await response.json();
+            importPayload(payload);
+            setLibraryOpen(false);
+        }
+
         function isEditableTarget(target) {
             return target instanceof HTMLInputElement ||
                 target instanceof HTMLTextAreaElement ||
@@ -1858,6 +2035,24 @@
             showStatus("Model JSON downloaded.", "success");
         });
         dom.importButton.addEventListener("click", () => dom.fileInput.click());
+        dom.libraryButton.addEventListener("click", openModelLibrary);
+        dom.libraryClose.addEventListener("click", () => setLibraryOpen(false));
+        dom.libraryOverlay.addEventListener("click", event => {
+            if (event.target === dom.libraryOverlay) setLibraryOpen(false);
+        });
+        dom.libraryGrid.addEventListener("click", async event => {
+            const button = event.target.closest("button[data-model-file]");
+            if (!button) return;
+            button.disabled = true;
+            try {
+                await loadHostedModel(button.dataset.modelFile, button.dataset.modelName || "model");
+            } catch (error) {
+                console.error(error);
+                showStatus(`Unable to load model: ${error.message}`, "error", 6500);
+            } finally {
+                button.disabled = false;
+            }
+        });
         dom.frameButton.addEventListener("click", frameAssembly);
 
         dom.clearButton.addEventListener("click", () => {
@@ -1986,7 +2181,11 @@
             }
 
             if (key === "escape") {
-                setSelectedBrick(null);
+                if (dom.libraryOverlay.classList.contains("open")) {
+                    setLibraryOpen(false);
+                } else {
+                    setSelectedBrick(null);
+                }
                 return;
             }
 
